@@ -1,0 +1,44 @@
+---
+# Let's add a comment to make this file sass-y.
+# Change this file for any custom CSS.
+---
+
+/* We need to add display:inline in order to align the '>>' of the 'read more' link */
+.post-excerpt p {
+	display:inline;
+}
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+	"syntax"
+;
+
+.icon {
+
+    > svg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+
+        path {
+            fill: #828282;
+        }
+    }
+}
+
+.social-media-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.social-media-list a {
+    font-size: 9pt;
+    text-decoration: none;
+    color: #828282;
+    transition: color ease 0.3s;
+}
+
+.social-media-list a:hover {
+    color: #111;
+}

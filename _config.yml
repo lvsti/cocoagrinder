@@ -1,0 +1,19 @@
+name: CocoaGrinder
+title: CocoaGrinder blog
+email: elveestei@gmail.com
+description: "ObjC, Swift, NSEverything"
+meta_description: "Your New Jekyll Site, Blogging about stuffs"
+twitter_username: cocoagrinder
+github_username: lvsti
+
+markdown: kramdown
+highlighter: pygments
+logo: false
+paginate: 15
+excerpt_separator: "<!--more-->"
+baseurl: /
+gems: [jekyll-paginate]
+
+# Details for the RSS feed generator
+url:            'https://lvsti.github.io/cocoagrinder'
+author:         'Tamas Lustyik'
