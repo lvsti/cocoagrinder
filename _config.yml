@@ -7,7 +7,7 @@ twitter_username: cocoagrinder
 github_username: lvsti
 
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 logo: false
 paginate: 15
 excerpt_separator: "<!--more-->"
