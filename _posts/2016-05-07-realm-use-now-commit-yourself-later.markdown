@@ -99,9 +99,9 @@ The solution hit me in the shower: instead of passing in the `List<T>`, which wo
 ```swift
 struct ToMany<U>: CollectionType {
     private let _countFunc: () -> Int
-    private let _subscriptFunc: (Int) -> U?
+    private let _subscriptFunc: (Int) -> U
     
-    init(countFunc: () -> Int, subscriptFunc: (Int) -> U?) {
+    init(countFunc: () -> Int, subscriptFunc: (Int) -> U) {
         _countFunc = countFunc
         _subscriptFunc = subscriptFunc
     }
@@ -125,12 +125,12 @@ struct ToMany<U>: CollectionType {
 // from CollectionType:
     
     subscript (position: Int) -> U {
-        return _subscriptFunc(position)!
+        return _subscriptFunc(position)
     }
     
     var isEmpty: Bool { return count == 0 }
     var count: Int { return endIndex }
-    var first: U? { return _subscriptFunc(0) }
+    var first: U? { return count > 0 ? _subscriptFunc(0) : nil }
 }
 ```
 
