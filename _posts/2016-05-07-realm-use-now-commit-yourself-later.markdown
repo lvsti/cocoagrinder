@@ -9,7 +9,7 @@ What do you do when you need to store and retrieve large amounts of data in an i
 
 I had no previous experience with the [Realm](https://realm.io) mobile database but I'm a frequent visitor of their Swift video collection, and was curious to find out if their solution is less of a P.I.T.A. than CoreData is, so I decided to give it a try. 
 
-Taking a quick look at the documentation and checking out the samples revealed to me that Realm's API deviates significantly from other Cocoa frameworks. Take the query results for example: while `NSManagedObjectContext.executeFetchRequest(_:)` returns an ordinary array, Realm's `objects(_:)` gives back `Results<T>`, an esoteric collection type that's not even that (it doesn't conform to `CollectionType` or any of the Swift protocols). But just by using the resulting model objects you can easily qualify for a framework lock-in:
+Taking a quick look at the documentation and checking out the samples revealed to me that interacting with the Realm framework requires using a bunch of custom types. Take the query results for example: while `NSManagedObjectContext.executeFetchRequest(_:)` returns an ordinary array, Realm's `objects(_:)` gives back `Results<T>`, an esoteric collection type, which makes all the code that deals with these results tightly coupled with the framework. But just by using the resulting model objects you can easily qualify for a lock-in:
 
 ```swift
 import RealmSwift
@@ -61,7 +61,7 @@ extension DBPlaceInfo: PlaceInfo {
 }
 ```
 
-Wiring properties and one-to-one relationships was a cakewalk; but how could I map the one-to-many `comments` from Realm's `List<T>` (another esoteric container) to an iterable and O(1)-countable collection (like an array)?
+Wiring properties and one-to-one relationships was a cakewalk; but how could I map the one-to-many `comments` from Realm's `List<T>` (another esoteric container) to some sufficiently general, iterable, and O(1)-countable collection (like an array)?
 
 In my first trial, I squeezed an `AnyGenerator<U>` out of `List<T>` as follows:
 
@@ -166,3 +166,5 @@ class Query {
 I could push this even further and define a protocol that completely hides the innards of the `Query` class. Either way, provided the app logic communicates with the data layer via this interface, you could swap implementations in and out without having to change a single line of code elsewhere.
 
 Are we happy, Vincent? Sure we are.
+
+UPDATE: previously I missed that both `List<T>` and `Result<T>` were actually implementing `CollectionType`; fixed that.
