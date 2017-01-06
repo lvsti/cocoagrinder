@@ -1,5 +1,6 @@
 ---
 layout: post
+disqus: true
 title:  "Realm – Use Now, Commit Yourself Later"
 date:   2016-05-07 14:12:35 +0200
 excerpt: "Avoiding technological lock-in while testdriving the Realm database aka. how to have your cake and eat it too?"

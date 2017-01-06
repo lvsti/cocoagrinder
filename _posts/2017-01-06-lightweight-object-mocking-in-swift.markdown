@@ -1,5 +1,6 @@
 ---
 layout: post
+disqus: true
 title:  "Lightweight Object Mocking in Swift"
 date:   2017-01-06 19:12:35 +0100
 excerpt: "Unit testing in Swift is not as smooth as it was in the ObjC times: creating mock objects without writing a lot of boilerplate is a challenge in itself. Can we make it suck less?"
