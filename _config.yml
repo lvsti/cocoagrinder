@@ -17,3 +17,5 @@ gems: [jekyll-paginate]
 # Details for the RSS feed generator
 url:            'https://lvsti.github.io/cocoagrinder'
 author:         'Tamas Lustyik'
+
+repository: lvsti/lvsti.github.io
