@@ -150,7 +150,7 @@ parser.stub("parse", andReturn: [42])   // parse will now return [42]
 
 #### Stub identifiers
 
-Next up: stub identifiers (the `"parse"` strings in the above example). Why do we need them at all? My first idea was to drop the identifiers altogether and use the function name instead since function names are unique, right? Right? WRONG. Consider the following class:
+Next up: stub identifiers (the `"parse"` strings in the above example). Why do we need them at all? My first idea was to drop the identifiers altogether and use the function name instead since function names are unique, right? Right? WRONG. Consider the following case:
 
 ```swift
 struct Sum {
@@ -163,7 +163,7 @@ s.add(5)        // prints "add(_:)"
 s.add(5.0)      // surprise! also prints "add(_:)"
 ```
 
-I set out to search for a way the compiler would return a different value for these two functions but I didn't manage to find one. Alright, user-specified identifiers are a must then. But I still didn't like the idea of having to type these strings twice-- once in the mock and once in the expectation. To eliminate the risk of typos, I decided to convert stub identifiers to enums. I also required implementors of `Mock` to define a `RawRepresentable` type (typically an enum) to identify methods of the mock:
+I set out to search for a way the compiler would return a different value for these two functions but I didn't manage to find one. Alright, user-specified identifiers are a must then. But I still didn't like the idea of having to type these strings twice-- once in the mock and once when setting up the stub. To eliminate the risk of typos, I decided to convert stub identifiers to enums. I also required implementors of `Mock` to define a `RawRepresentable` type (typically an enum) to identify methods of the mock:
 
 ```swift
 protocol Mock {
