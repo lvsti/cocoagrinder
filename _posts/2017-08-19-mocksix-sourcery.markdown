@@ -379,13 +379,13 @@ Let's go back to the `dummyValue(for:typeName:)` function and replace the `.dumm
 }
 ```
 
-And with that, we are really done (well, for now). The complete template can be downloaded [here](https://github.com/lvsti/MockSix/blob/master/Support/Mockable.swifttemplate). (There are some subtle differences though that are responsible for pretty printing the result.) I'm sure it could be further improved but I hope it already proves the point.
+And with that, we are really done (well, for now). The complete template can be downloaded [here](https://github.com/lvsti/MockSix/blob/master/Support/Sourcery/Mockable.swifttemplate). (There are some subtle differences though that are responsible for pretty printing the result.) I'm sure it could be further improved but I hope it already proves the point.
 
 ### Working with generated mocks
 
 With the above infrastructure in place, mocking a new protocol consists of the following steps:
 
-1. add the `// sourcery: "mockable"` annotation to the protocol for the template to pick the type up
+1. add the `// sourcery:mockable` annotation to the protocol for the template to pick the type up
 2. run Sourcery and update the generated mocks file with the output
 3. check if there are any new types that need to be extended for `Dummy<T>` (the compiler will tell you), and if so, provide a `static var value` for them (or, alternatively, conform them to `DefaultInitializable`)
 
